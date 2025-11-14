@@ -1,0 +1,37 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# mount point     fstype        device                                                      flags
+/metadata         ext4       /dev/block/by-name/md_udc                            flags=display="Metadata"
+/data             f2fs       /dev/block/by-name/userdata                          flags=display="Data";fileencryption=aes-256-xts:aes-256-cts:v2
+/protect1         ext4       /dev/block/by-name/protect1                          flags=display="Protect1";backup=1
+/protect2         ext4       /dev/block/by-name/protect2                          flags=display="Protect2";backup=1
+/nvdata           ext4       /dev/block/by-name/nvdata                            flags=display="Nvdata";backup=1
+/nvcfg            ext4       /dev/block/by-name/nvcfg                             flags=display="Nvcfg";backup=1
+/persist          ext4       /dev/block/by-name/persist                           flags=display="Persist";backup=1;flashimg=1
+/nvram            emmc       /dev/block/by-name/nvram                             flags=display="Nvram";backup=1;flashimg=1
+/proinfo          emmc       /dev/block/by-name/proinfo                           flags=display="Proinfo";backup=1;flashimg=1
+/bootloader       emmc       /dev/block/by-name/lk                                flags=display="lk";backup=1;flashimg=1
+/bootloader2      emmc       /dev/block/by-name/lk2                               flags=display="lk2";backup=1;flashimg=1
+/para             emmc       /dev/block/by-name/para                              flags=display="Para";backup=1
+/boot             emmc       /dev/block/by-name/boot                              flags=display="Boot";backup=1;slotselect;flashimg=1
+/vbmeta_vendor    emmc       /dev/block/by-name/vbmeta_vendor                     flags=display="Vbmeta Vendor";slotselect;flashimg=1
+/vbmeta_system    emmc       /dev/block/by-name/vbmeta_system                     flags=display="Vbmeta System";slotselect;flashimg=1
+/dtbo             emmc       /dev/block/by-name/dtbo                              flags=display="Dtbo";backup=1;flashimg=1
+/vbmeta           emmc       /dev/block/by-name/vbmeta                            flags=display="Vbmeta";flashimg=1
+
+# SUPER
+/system             ext4      /dev/block/mapper/system                            flags=slotselect;backup=1;display="System"
+/vendor             ext4      /dev/block/mapper/vendor                            flags=slotselect;backup=1;display="Vendor"
+/product            ext4      /dev/block/mapper/product                           flags=slotselect;backup=1;display="Product"
+/system_ext         ext4      /dev/block/mapper/system_ext                        flags=slotselect;backup=1;display="System_Ext"
+
+/system_image       emmc      /dev/block/mapper/system                            flags=backup=1;display="System Image"
+/vendor_image       emmc      /dev/block/mapper/vendor                            flags=backup=1;display="Vendor Image"
+/product_image      emmc      /dev/block/mapper/product                           flags=backup=1;display="Product Image"
+/system_ext_image   emmc      /dev/block/mapper/system_ext                        flags=backup=1;display="System_Ext Image"
+
+# External Storage
+/external_sd    auto    /dev/block/mmcblk1p1    /dev/block/mmcblk1       flags=display="External_SDcard";storage;wipeingui;removable
+/usb_otg        auto  /dev/block/sda1       /dev/block/sda   /dev/block/sdd1              flags=display="USB OTG";storage;wipeingui;removable
