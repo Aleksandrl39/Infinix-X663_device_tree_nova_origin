@@ -202,8 +202,9 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 #TW_INCLUDE_FBE := true
 #TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
-# В device/Infinix/X663/BoardConfig.mk добавьте:
+# Полное отключение fscrypt
 TW_NO_FSCRYPT_SIDELOAD := true
+TW_EXCLUDE_FSCRYPT := true
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
